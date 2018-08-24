@@ -21,7 +21,9 @@
     "webpack-dev-server": "^3.1.5"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "dev": "webpack-dev-server --mode development --open",
+    "build": "webpack --mode production"
   },
   "repository": {
     "type": "git",
