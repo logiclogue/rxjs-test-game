@@ -1,3 +1,3 @@
-import "./test.re";
+import "./test.ml";
 
 console.log("HERE");
