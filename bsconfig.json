@@ -1,17 +1,25 @@
 {
   "name": "rxjs-test-game",
   "version": "0.1.0",
-  "sources": {
-    "dir" : "src",
-    "subdirs" : true
-  },
+  "sources": [
+    {
+      "dir": "src",
+      "subdirs" : true
+    },
+    {
+      "dir": "test",
+      "type": "dev"
+    }
+],
   "package-specs": {
     "module": "commonjs",
     "in-source": true
   },
   "suffix": ".bs.js",
   "bs-dependencies": [
-      // add your bs-dependencies here 
+  ],
+  "bs-dev-dependencies": [
+      "bs-mocha"
   ],
   "warnings": {
     "error" : "+101"
