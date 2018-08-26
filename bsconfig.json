@@ -19,7 +19,6 @@
   "bs-dependencies": [
   ],
   "bs-dev-dependencies": [
-      "bs-mocha"
   ],
   "warnings": {
     "error" : "+101"

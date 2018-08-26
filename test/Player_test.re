@@ -1,11 +1,5 @@
-open BsMocha.Mocha;
-
-type assertion('a);
-
-[@bs.module "chai"]
-external expect: 'a => assertion('a) = "";
-[@bs.send]
-external toEqual: (assertion('a), 'a) => unit = "equal";
+open Mocha;
+open Chai;
 
 describe("Player", () => {
     let player = Player.create((0, 0));

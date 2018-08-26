@@ -1,8 +1,6 @@
-type position = (int, int);
-
 type player = {
-    position: position,
-    prevPosition: position,
+    position: Entity.position,
+    prevPosition: Entity.position,
     velocity: int,
     direction: float
 };
@@ -14,13 +12,11 @@ let create = position => ({
     direction: 0.0
 });
 
-let goNorth = player => {
-    {
-        ...player,
-        velocity: 1,
-        direction: 0.0
-    }
-};
+let goNorth = player => ({
+    ...player,
+    velocity: 1,
+    direction: 0.0
+});
 
 let goEast = player => {
     {
