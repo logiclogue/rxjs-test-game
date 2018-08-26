@@ -4,3 +4,4 @@
 package-lock.json
 .merlin
 *.bs.js
+.bsb.lock

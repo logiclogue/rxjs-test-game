@@ -8,7 +8,7 @@ const htmlPlugin = new HtmlWebpackPlugin({
 module.exports = {
     devtool: "source-maps",
     entry: {
-        main: "./src/index.js"
+        main: "./src/index.bs.js"
     },
     module: {
         rules: [
@@ -16,10 +16,6 @@ module.exports = {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 use: "babel-loader"
-            },
-            {
-                test: /\.(re|ml)$/,
-                use: "bs-loader"
             }
         ]
     },
