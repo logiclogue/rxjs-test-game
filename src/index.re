@@ -7,13 +7,10 @@ let entitiesStream = RxJS.createObservable(subscriber => {
     subscriber->RxJS.complete;
 });
 
-entitiesStream->RxJS.subscribe(({ position: (x, y) }) => {
-    ctx->Canvas.fillRect(x, y, 10.0, 10.0);
-});
+let loopStream = RxJS.interval(0, RxJS.animationFrame)->RxJS.share;
 
-RxJS.createObservable(subscriber => {
-    subscriber->RxJS.next(5);
-    subscriber->RxJS.complete;
-})
-    ->RxJS.map(x => x + 1)
-    ->RxJS.subscribe(Js.log);
+let draw = loopStream
+    ->RxJS.withLatestFrom(entitiesStream)
+    ->RxJS.subscribe(({ position: (x, y) }) => {
+        ctx->Canvas.fillRect(x, y, 10.0, 10.0);
+    });
