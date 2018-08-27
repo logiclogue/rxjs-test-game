@@ -2,7 +2,7 @@ open Mocha;
 open Chai;
 
 describe("Player", () => {
-    let player = Player.create((0, 0));
+    let player = Player.create((0.0, 0.0));
 
     describe(".goNorth()", () => {
         let result = player->Player.goNorth;

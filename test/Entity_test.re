@@ -6,8 +6,8 @@ describe("Entity", () => {
     describe("tick", () => {
         context("velocity = 0", () => {
             let entity = {
-                position: (42, 0),
-                prevPosition: (0, 0),
+                position: (42.0, 0.0),
+                prevPosition: (0.0, 0.0),
                 velocity: 0,
                 direction: 0.0
             };
@@ -25,8 +25,8 @@ describe("Entity", () => {
 
         context("velocity = 1, direction = 0", () => {
             let entity = {
-                position: (42, 0),
-                prevPosition: (0, 0),
+                position: (42.0, 0.0),
+                prevPosition: (0.0, 0.0),
                 velocity: 1,
                 direction: 0.0
             };
@@ -34,7 +34,7 @@ describe("Entity", () => {
             let result = entity->tick;
 
             it("sets the position to (43, 0)", () => {
-                expect(result.position)->t->deep->equal((43, 0))
+                expect(result.position)->t->deep->equal((43.0, 0.0))
             });
         });
     });

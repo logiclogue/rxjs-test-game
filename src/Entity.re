@@ -1,4 +1,4 @@
-type position = (int, int);
+type position = (float, float);
 
 type entity = {
     position: position,
