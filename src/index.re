@@ -3,8 +3,8 @@ let ctx = canvas->Canvas.getContext("2d");
 
 let entitiesStream = RxJS.createObservable(subscriber => {
     subscriber->RxJS.next([
-        Player.create((0.0, 0.0));
-        Player.create((50.0, 0.0));
+        Player.create((0.0, 0.0)),
+        Player.create((50.0, 0.0))
     ]);
     subscriber->RxJS.complete;
 });
