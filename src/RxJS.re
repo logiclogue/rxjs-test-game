@@ -41,7 +41,7 @@ external share : unit => monoTypeOperatorFunction('a) = "";
 external tap : ('a => 'b) => monoTypeOperatorFunction('a) = "";
 
 [@bs.module "rxjs/operators"]
-external withLatestFrom : observable('b) => operatorFunction('a, 'b) = "";
+external withLatestFrom : observable('b) => operatorFunction('a, ('a, 'b)) = "";
 
 let map = (observable, f) => map(f, observable);
 let sample = (observable, notifier) => sample(notifier, observable);
