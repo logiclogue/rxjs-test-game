@@ -25,8 +25,14 @@ external animationFrame : scheduler = "";
 [@bs.val] [@bs.module "rxjs"]
 external interval : (int, scheduler) => observable(int) = "";
 
+[@bs.val] [@bs.splice] [@bs.module "rxjs"]
+external createOf : array('a) => observable('a) = "of";
+
 [@bs.val] [@bs.splice]
 external combineLatest : array(observable('a)) => observable('a) = "";
+
+[@bs.val] [@bs.module "rxjs"]
+external fromEvent : ('a, string) => observable('b) = "";
 
 [@bs.module "rxjs/operators"]
 external map : ('a => 'b) => operatorFunction('a, 'b) = "map";

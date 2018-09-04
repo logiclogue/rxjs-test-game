@@ -14,5 +14,5 @@ external clearRect: (context, float, float, float, float) => unit = "";
 external fillStyle: (context, string) => unit = "";
 
 let getById
-    : string => canvas
-    = [%bs.raw {| id => document.getElementById(id) |}];
+: string => canvas
+= [%bs.raw {| id => document.getElementById(id) |}];

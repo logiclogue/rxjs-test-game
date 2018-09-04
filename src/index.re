@@ -1,16 +1,13 @@
 let canvas = Canvas.getById("canvas");
 let ctx    = canvas->Canvas.getContext("2d");
 
-let gameStateStream = RxJS.createObservable(subscriber => {
-    subscriber->RxJS.next(GameState.{
-        player: Player.create((10.0, 10.0)),
-        entities: [
-            Player.create((0.0, 0.0)),
-            Player.create((50.0, 0.0))
-        ]
-    });
-    subscriber->RxJS.complete;
-});
+let gameStateStream = RxJS.createOf([|GameState.{
+    player: Player.create((10.0, 10.0)),
+    entities: [
+        Player.create((0.0, 0.0)),
+        Player.create((50.0, 0.0))
+    ]
+}|]);
 
 let loopStream = RxJS.interval(0, RxJS.animationFrame)->RxJS.share;
 
@@ -37,6 +34,9 @@ let renderGameState
 
     renderPlayer(player);
 };
+
+RxJS.fromEvent([%bs.raw {| document |}], "keydown")
+    ->RxJS.subscribe(Js.log);
 
 let draw = loopStream
     ->RxJS.withLatestFrom(gameStateStream)
