@@ -8,7 +8,7 @@ describe("Player", () => {
         let result = player->Player.goNorth;
 
         it("sets the velocity to 1", () => {
-            expect(result.velocity)->toEqual(1);
+            expect(result.velocity)->toEqual(1.0);
         });
 
         it("sets the direction to 0", () => {
@@ -20,7 +20,7 @@ describe("Player", () => {
         let result = player->Player.goEast;
 
         it("sets the velocity to 1", () => {
-            expect(result.velocity)->toEqual(1);
+            expect(result.velocity)->toEqual(1.0);
         });
 
         it("sets the direction to pi / 4", () => {
@@ -32,7 +32,7 @@ describe("Player", () => {
         let result = player->Player.goSouth;
 
         it("sets the velocity to 1", () => {
-            expect(result.velocity)->toEqual(1);
+            expect(result.velocity)->toEqual(1.0);
         });
 
         it("sets the direction to pi / 2", () => {
@@ -44,7 +44,7 @@ describe("Player", () => {
         let result = player->Player.goWest;
 
         it("sets the velocity to 1", () => {
-            expect(result.velocity)->toEqual(1);
+            expect(result.velocity)->toEqual(1.0);
         });
 
         it("sets the direction to 3 * pi / 4", () => {

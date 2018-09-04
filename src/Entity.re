@@ -1,17 +1,20 @@
 type position = (float, float);
 
 type entity = {
-    position: position,
+    position:     position,
     prevPosition: position,
-    velocity: int,
-    direction: float
+    velocity:     float,
+    direction:    float
 };
 
-let tick = entity => {
+let tick = ({ position: (x, y), velocity, direction }) => {
+    let newX = x +. (Js_math.cos(direction) *. velocity);
+    let newY = y +. (Js_math.sin(direction) *. velocity);
+
     {
-        position: entity.position,
-        prevPosition: entity.position,
-        velocity: entity.velocity,
-        direction: entity.direction
+        position:     (newX, newY),
+        prevPosition: (x, y),
+        velocity:     velocity,
+        direction:    direction
     }
 };
