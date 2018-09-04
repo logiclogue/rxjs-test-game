@@ -1,24 +1,23 @@
-type player = {
-    position: Entity.position,
-    prevPosition: Entity.position,
-    velocity: int,
-    direction: float
-};
-
-let create = position => ({
-    position,
+let create
+: Entity.position => Entity.entity
+= position => ({
+    position: position,
     prevPosition: position,
     velocity: 0,
     direction: 0.0
 });
 
-let goNorth = player => ({
+let goNorth
+: Entity.entity => Entity.entity
+= player => ({
     ...player,
     velocity: 1,
     direction: 0.0
 });
 
-let goEast = player => {
+let goEast
+: Entity.entity => Entity.entity
+= player => {
     {
         ...player,
         velocity: 1,
@@ -26,7 +25,9 @@ let goEast = player => {
     }
 };
 
-let goSouth = player => {
+let goSouth
+: Entity.entity => Entity.entity
+= player => {
     {
         ...player,
         velocity: 1,
@@ -34,7 +35,9 @@ let goSouth = player => {
     }
 };
 
-let goWest = player => {
+let goWest
+: Entity.entity => Entity.entity
+= player => {
     {
         ...player,
         velocity: 1,
