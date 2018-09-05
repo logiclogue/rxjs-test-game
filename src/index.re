@@ -35,10 +35,11 @@ let renderGameState
     renderPlayer(player);
 };
 
-RxJS.fromEvent([%bs.raw {| document |}], "keydown")
-    ->RxJS.subscribe(Js.log);
-
 let draw = loopStream
     ->RxJS.withLatestFrom(gameStateStream)
     ->RxJS.map(((_loop, gameState)) => gameState)
     ->RxJS.subscribe(renderGameState);
+
+KeyStreams.keydownStream
+    ->RxJS.map(KeyStreams.getKeyCode)
+    ->RxJS.subscribe(Js.log);
