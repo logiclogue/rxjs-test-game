@@ -31,6 +31,5 @@ let draw = RxJS.withLatestFrom loopStream gameStateStream
     |. RxJS.map (fun (_loop, gameState) -> gameState)
     |. RxJS.subscribe renderGameState
 
-let () = Keydown.keydownStream
-    |. RxJS.map Keydown.getKeyCode
+let () = Keydown.keyCodeStream
     |. RxJS.subscribe Js.log

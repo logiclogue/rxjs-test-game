@@ -38,6 +38,9 @@ external fromEvent : ('a, string) => observable('b) = "";
 external map : ('a => 'b) => operatorFunction('a, 'b) = "map";
 
 [@bs.module "rxjs/operators"]
+external filter : ('a => bool) => monoTypeOperatorFunction('a) = "";
+
+[@bs.module "rxjs/operators"]
 external sample : observable('a) => monoTypeOperatorFunction('b) = "";
 
 [@bs.module "rxjs/operators"]
@@ -50,6 +53,7 @@ external tap : ('a => 'b) => monoTypeOperatorFunction('a) = "";
 external withLatestFrom : observable('b) => operatorFunction('a, ('a, 'b)) = "";
 
 let map = (observable, f) => map(f, observable);
+let filter = (observable, f) => filter(f, observable);
 let sample = (observable, notifier) => sample(notifier, observable);
 let share = observable => share((), observable);
 let tap = (observable, f) => tap(f, observable);
