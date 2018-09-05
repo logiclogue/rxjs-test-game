@@ -1,6 +1,6 @@
-let document = [%raw {| document |}]
-
 type keydown
+
+let document = [%raw {| document |}]
 
 external getKeyCode : keydown -> int = "keyCode" [@@bs.get]
 
