@@ -28,7 +28,7 @@ let renderGameState { GameState.player; entities } =
     ()
 
 let draw = RxJS.withLatestFrom loopStream gameStateStream
-    |. RxJS.map snd
+    |. RxJS.map (fun (_loop, gameState) -> gameState)
     |. RxJS.subscribe renderGameState
 
 let () = Keydown.keyCodeStream
