@@ -5,12 +5,7 @@ open Entity;
 describe("Entity", () => {
     describe("tick", () => {
         context("velocity = 0", () => {
-            let entity = {
-                position: (42.0, 0.0),
-                prevPosition: (0.0, 0.0),
-                velocity: 0.0,
-                direction: 0.0
-            };
+            let entity = Stubs.still_entity;
 
             let result = entity->tick;
 
@@ -24,12 +19,7 @@ describe("Entity", () => {
         });
 
         context("velocity = 1, direction = 0", () => {
-            let entity = {
-                position: (42.0, 0.0),
-                prevPosition: (0.0, 0.0),
-                velocity: 1.0,
-                direction: 0.0
-            };
+            let entity = Stubs.forward_entity;
 
             let result = entity->tick;
 
@@ -39,12 +29,7 @@ describe("Entity", () => {
         });
 
         context("velocity = 1, direction = PI / 2", () => {
-            let entity = {
-                position: (42.0, 0.0),
-                prevPosition: (0.0, 0.0),
-                velocity: 1.0,
-                direction: Js_math._PI /. 2.0
-            };
+            let entity = Stubs.right_entity;
 
             let result = entity->tick;
 
