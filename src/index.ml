@@ -16,10 +16,20 @@ let renderEntity { Entity.position = (x, y) } =
     ctx |. Canvas.fillRect x y 10.0 10.0;
     ()
 
-let renderPlayer { Entity.position = (x, y) } =
-    ctx |. Canvas.fillStyle "#00FF00";
-    ctx |. Canvas.fillRect x y 10.0 10.0;
-    ()
+module type Renderable = sig
+    type t
+
+    val render : t -> unit
+end
+
+module RenderablePlayer : Renderable = struct
+    type t = Entity
+
+    let render { Entity.position = (x, y) } =
+        ctx |. Canvas.fillStyle "#00FF00";
+        ctx |. Canvas.fillRect x y 10.0 10.0;
+        ()
+end
 
 let renderGameState { GameState.player; entities } =
     ctx |. Canvas.clearRect 0.0 0.0 100.0 100.0;
