@@ -27,6 +27,9 @@ let render_game_state { GameState.player; entities } =
     render_player player;
     ()
 
+let player_modifier_stream = Keydown.up_stream
+    |. RxJS.map_to Player.go_north
+
 let draw = RxJS.with_latest_from loop_stream game_state_stream
     |. RxJS.map snd
     |. RxJS.subscribe render_game_state
