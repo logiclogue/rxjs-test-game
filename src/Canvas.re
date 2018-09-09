@@ -2,17 +2,17 @@ type canvas;
 type context;
 
 [@bs.send]
-external getContext: (canvas, string) => context = "";
+external get_context: (canvas, string) => context = "getContext";
 
 [@bs.send]
-external fillRect: (context, float, float, float, float) => unit = "";
+external fill_rect: (context, float, float, float, float) => unit = "fillRect";
 
 [@bs.send]
-external clearRect: (context, float, float, float, float) => unit = "";
+external clear_rect: (context, float, float, float, float) => unit = "clearRect";
 
 [@bs.set]
-external fillStyle: (context, string) => unit = "";
+external fill_style: (context, string) => unit = "fillStyle";
 
-let getById
+let get_by_id
 : string => canvas
 = [%bs.raw {| id => document.getElementById(id) |}];

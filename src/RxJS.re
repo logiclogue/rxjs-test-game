@@ -1,11 +1,11 @@
 type subscriber('a);
 type observable('a);
 type scheduler;
-type operatorFunction('a, 'b) = observable('a) => observable('b);
-type monoTypeOperatorFunction('a) = operatorFunction('a, 'a);
+type operator_function('a, 'b) = observable('a) => observable('b);
+type mono_type_operator_function('a) = operator_function('a, 'a);
 
 [@bs.new] [@bs.module "rxjs"]
-external createSubscriber : subscriber('a) = "Subscriber";
+external create_subscriber : subscriber('a) = "Subscriber";
 
 [@bs.send]
 external next : (subscriber('a), 'a) => unit = "";
@@ -14,47 +14,47 @@ external next : (subscriber('a), 'a) => unit = "";
 external complete : subscriber('a) => unit = "";
 
 [@bs.new] [@bs.module "rxjs"]
-external createObservable : (subscriber('a) => unit) => observable('a) = "Observable";
+external create_observable : (subscriber('a) => unit) => observable('a) = "Observable";
 
 [@bs.send]
 external subscribe : (observable('a), 'a => unit) => unit = "";
 
 [@bs.val] [@bs.module "rxjs"]
-external animationFrame : scheduler = "";
+external animation_frame : scheduler = "animationFrame";
 
 [@bs.val] [@bs.module "rxjs"]
 external interval : (int, scheduler) => observable(int) = "";
 
 [@bs.val] [@bs.splice] [@bs.module "rxjs"]
-external createOf : array('a) => observable('a) = "of";
+external create_of : array('a) => observable('a) = "of";
 
 [@bs.val] [@bs.splice]
-external combineLatest : array(observable('a)) => observable('a) = "";
+external combine_latest : array(observable('a)) => observable('a) = "combineLatest";
 
 [@bs.val] [@bs.module "rxjs"]
-external fromEvent : ('a, string) => observable('b) = "";
+external from_event : ('a, string) => observable('b) = "fromEvent";
 
 [@bs.module "rxjs/operators"]
-external map : ('a => 'b) => operatorFunction('a, 'b) = "map";
+external map : ('a => 'b) => operator_function('a, 'b) = "map";
 
 [@bs.module "rxjs/operators"]
-external filter : ('a => bool) => monoTypeOperatorFunction('a) = "";
+external filter : ('a => bool) => mono_type_operator_function('a) = "";
 
 [@bs.module "rxjs/operators"]
-external sample : observable('a) => monoTypeOperatorFunction('b) = "";
+external sample : observable('a) => mono_type_operator_function('b) = "";
 
 [@bs.module "rxjs/operators"]
-external share : unit => monoTypeOperatorFunction('a) = "";
+external share : unit => mono_type_operator_function('a) = "";
 
 [@bs.module "rxjs/operators"]
-external tap : ('a => 'b) => monoTypeOperatorFunction('a) = "";
+external tap : ('a => 'b) => mono_type_operator_function('a) = "";
 
 [@bs.module "rxjs/operators"]
-external withLatestFrom : observable('b) => operatorFunction('a, ('a, 'b)) = "";
+external with_latest_from : observable('b) => operator_function('a, ('a, 'b)) = "withLatestFrom";
 
 let map = (observable, f) => map(f, observable);
 let filter = (observable, f) => filter(f, observable);
 let sample = (observable, notifier) => sample(notifier, observable);
 let share = observable => share((), observable);
 let tap = (observable, f) => tap(f, observable);
-let withLatestFrom = (observable, project) => withLatestFrom(project, observable);
+let with_latest_from = (observable, project) => with_latest_from(project, observable);

@@ -1,7 +1,7 @@
-let canvas = Canvas.getById "canvas"
-let ctx    = canvas |. Canvas.getContext "2d"
+let canvas = Canvas.get_by_id "canvas"
+let ctx    = canvas |. Canvas.get_context "2d"
 
-let gameStateStream = RxJS.createOf [|GameState.{
+let game_state_stream = RxJS.create_of [|GameState.{
     player   = Player.create (10.0, 10.0);
     entities = [
         Player.create (0.0, 0.0);
@@ -9,27 +9,27 @@ let gameStateStream = RxJS.createOf [|GameState.{
     ];
 }|]
 
-let loopStream = RxJS.interval 0 RxJS.animationFrame |. RxJS.share
+let loop_stream = RxJS.interval 0 RxJS.animation_frame |. RxJS.share
 
-let renderEntity { Entity.position = (x, y) } =
-    ctx |. Canvas.fillStyle "#FF0000";
-    ctx |. Canvas.fillRect x y 10.0 10.0;
+let render_entity { Entity.position = (x, y) } =
+    ctx |. Canvas.fill_style "#FF0000";
+    ctx |. Canvas.fill_rect x y 10.0 10.0;
     ()
 
-let renderPlayer { Entity.position = (x, y) } =
-    ctx |. Canvas.fillStyle "#00FF00";
-    ctx |. Canvas.fillRect x y 10.0 10.0;
+let render_player { Entity.position = (x, y) } =
+    ctx |. Canvas.fill_style "#00FF00";
+    ctx |. Canvas.fill_rect x y 10.0 10.0;
     ()
 
-let renderGameState { GameState.player; entities } =
-    ctx |. Canvas.clearRect 0.0 0.0 100.0 100.0;
-    entities |> List.iter renderEntity;
-    renderPlayer player;
+let render_game_state { GameState.player; entities } =
+    ctx |. Canvas.clear_rect 0.0 0.0 100.0 100.0;
+    entities |> List.iter render_entity;
+    render_player player;
     ()
 
-let draw = RxJS.withLatestFrom loopStream gameStateStream
+let draw = RxJS.with_latest_from loop_stream game_state_stream
     |. RxJS.map snd
-    |. RxJS.subscribe renderGameState
+    |. RxJS.subscribe render_game_state
 
-let () = Keydown.keyCodeStream
+let () = Keydown.key_code_stream
     |. RxJS.subscribe Js.log

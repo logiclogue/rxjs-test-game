@@ -2,18 +2,18 @@ type keydown
 
 let document = [%raw {| document |}]
 
-external getKeyCode : keydown -> int = "keyCode" [@@bs.get]
+external get_key_code : keydown -> int = "keyCode" [@@bs.get]
 
-let keydownStream
+let keydown_stream
 : keydown RxJS.observable
-= RxJS.fromEvent document "keydown"
+= RxJS.from_event document "keydown"
     |. RxJS.share
 
-let keyCodeStream = RxJS.map keydownStream getKeyCode
+let key_code_stream = RxJS.map keydown_stream get_key_code
 
-let filterKeyStream x = RxJS.filter keyCodeStream ((==) x)
+let filter_key_stream x = RxJS.filter key_code_stream ((==) x)
 
-let leftStream  = filterKeyStream 37
-let upStream    = filterKeyStream 38
-let rightStream = filterKeyStream 39
-let downStream  = filterKeyStream 40
+let leftStream  = filter_key_stream 37
+let upStream    = filter_key_stream 38
+let rightStream = filter_key_stream 39
+let downStream  = filter_key_stream 40
