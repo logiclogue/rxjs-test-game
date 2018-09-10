@@ -1,13 +1,13 @@
 let canvas = Canvas.get_by_id "canvas"
 let ctx    = canvas |. Canvas.get_context "2d"
 
-let game_state_stream = RxJS.create_of [|GameState.{
+let game_state_seed = GameState.{
     player   = Player.create (10.0, 10.0);
     entities = [
         Player.create (0.0, 0.0);
         Player.create (50.0, 0.0);
     ];
-}|]
+}
 
 let loop_stream = RxJS.interval 0 RxJS.animation_frame |. RxJS.share
 
@@ -28,10 +28,19 @@ let render_game_state { GameState.player; entities } =
     ()
 
 let player_modifier_stream = Keydown.up_stream
-    |. RxJS.map_to Player.go_north
+    |. RxJS.map_to (fun game_state -> GameState.{
+        game_state with
+        player = Player.go_north game_state.player
+    })
+
+let reduce acc value _index = value acc
+
+let game_state_stream = player_modifier_stream
+    |> RxJS.scan reduce game_state_seed
 
 let draw = RxJS.with_latest_from loop_stream game_state_stream
     |. RxJS.map snd
+    |. RxJS.map GameState.tick
     |. RxJS.subscribe render_game_state
 
 let () = Keydown.key_code_stream
