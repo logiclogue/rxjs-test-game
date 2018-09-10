@@ -37,8 +37,11 @@ external from_event : ('a, string) => observable('b) = "fromEvent";
 [@bs.module "rxjs/operators"]
 external map : ('a => 'b) => operator_function('a, 'b) = "map";
 
-[@bs.module "rxjs/opereators"]
+[@bs.module "rxjs/operators"]
 external map_to : 'b => operator_function('a, 'b) = "mapTo";
+
+[@bs.module "rxjs/operators"]
+external scan : (('b, 'a, 'c) => 'b, 'a) => operator_function('a, 'b) = "";
 
 [@bs.module "rxjs/operators"]
 external filter : ('a => bool) => mono_type_operator_function('a) = "";
