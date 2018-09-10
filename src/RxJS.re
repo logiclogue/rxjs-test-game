@@ -60,6 +60,7 @@ external with_latest_from : observable('b) => operator_function('a, ('a, 'b)) = 
 
 let map    = (observable, f) => map(f, observable);
 let map_to = (observable, x) => map_to(x, observable);
+let scan   = (observable, f, seed) => scan(f, seed, observable);
 let filter = (observable, f) => filter(f, observable);
 let sample = (observable, notifier) => sample(notifier, observable);
 let share  = observable => share((), observable);
