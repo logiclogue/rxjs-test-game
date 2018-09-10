@@ -41,7 +41,7 @@ external map : ('a => 'b) => operator_function('a, 'b) = "map";
 external map_to : 'b => operator_function('a, 'b) = "mapTo";
 
 [@bs.module "rxjs/operators"]
-external scan : (('b, 'a, 'c) => 'b, 'a) => operator_function('a, 'b) = "";
+external scan : ((('b, 'a, int) => 'b), 'b) => operator_function('a, 'b) = "";
 
 [@bs.module "rxjs/operators"]
 external filter : ('a => bool) => mono_type_operator_function('a) = "";
@@ -60,7 +60,6 @@ external with_latest_from : observable('b) => operator_function('a, ('a, 'b)) = 
 
 let map    = (observable, f) => map(f, observable);
 let map_to = (observable, x) => map_to(x, observable);
-let scan   = (observable, f, seed) => scan(f, seed, observable);
 let filter = (observable, f) => filter(f, observable);
 let sample = (observable, notifier) => sample(notifier, observable);
 let share  = observable => share((), observable);
