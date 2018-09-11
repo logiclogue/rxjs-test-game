@@ -28,10 +28,7 @@ let render_game_state { GameState.player; entities } =
     ()
 
 let player_modifier_stream = Keydown.up_stream
-    |. RxJS.map_to (fun game_state -> GameState.{
-        game_state with
-        player = Player.go_north game_state.player
-    })
+    |. RxJS.map_to (GameState.update_player Player.go_north)
 
 let reduce acc value _index = value acc
 
