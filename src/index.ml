@@ -33,7 +33,7 @@ let player_modifier_stream = Keydown.up_stream
 
 let reduce acc value _index = value acc
 
-let game_state_stream = player_modifier_stream
+let game_state_stream = RxJS.merge [|player_modifier_stream|]
     |> RxJS.scan reduce game_state_seed
 
 let draw = RxJS.with_latest_from loop_stream game_state_stream
