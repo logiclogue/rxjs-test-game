@@ -7,11 +7,11 @@ external get_key_code : keydown -> int = "keyCode" [@@bs.get]
 let keydown_stream
 : keydown RxJS.observable
 = RxJS.from_event document "keydown"
-    |. RxJS.share
+    |> RxJS.share ()
 
-let key_code_stream = RxJS.map keydown_stream get_key_code
+let key_code_stream = RxJS.map get_key_code keydown_stream
 
-let filter_key_stream x = RxJS.filter key_code_stream ((==) x)
+let filter_key_stream x = RxJS.filter ((==) x) key_code_stream
 
 let left_stream  = filter_key_stream 37
 let up_stream    = filter_key_stream 38

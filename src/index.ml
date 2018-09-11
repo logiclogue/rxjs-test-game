@@ -9,7 +9,8 @@ let game_state_seed = GameState.{
     ];
 }
 
-let loop_stream = RxJS.interval 0 RxJS.animation_frame |. RxJS.share
+let loop_stream = RxJS.interval 0 RxJS.animation_frame
+    |> RxJS.share ()
 
 let render_entity { Entity.position = (x, y) } =
     ctx |. Canvas.fill_style "#FF0000";
@@ -28,7 +29,7 @@ let render_game_state { GameState.player; entities } =
     ()
 
 let player_modifier_stream = Keydown.up_stream
-    |. RxJS.map_to (GameState.update_player Player.go_north)
+    |> RxJS.map_to (GameState.update_player Player.go_north)
 
 let reduce acc value _index = value acc
 
@@ -36,8 +37,7 @@ let game_state_stream = player_modifier_stream
     |> RxJS.scan reduce game_state_seed
 
 let draw = RxJS.with_latest_from loop_stream game_state_stream
-    |. RxJS.map snd
-    |. RxJS.map GameState.tick
+    |> RxJS.map fst
     |. RxJS.subscribe render_game_state
 
 let () = Keydown.key_code_stream

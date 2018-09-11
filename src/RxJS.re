@@ -57,11 +57,3 @@ external tap : ('a => 'b) => mono_type_operator_function('a) = "";
 
 [@bs.module "rxjs/operators"]
 external with_latest_from : observable('b) => operator_function('a, ('a, 'b)) = "withLatestFrom";
-
-let map    = (observable, f) => map(f, observable);
-let map_to = (observable, x) => map_to(x, observable);
-let filter = (observable, f) => filter(f, observable);
-let sample = (observable, notifier) => sample(notifier, observable);
-let share  = observable => share((), observable);
-let tap    = (observable, f) => tap(f, observable);
-let with_latest_from = (observable, project) => with_latest_from(project, observable);
