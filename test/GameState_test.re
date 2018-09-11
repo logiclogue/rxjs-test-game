@@ -6,13 +6,13 @@ describe("GameState", () => {
     describe(".tick()", () => {
         context("given player moving forward", () => {
             let player = Stubs.forward_entity;
-            let input = GameState.{
-                player,
-                entities: []
+            let input = {
+                GameState.player: player,
+                GameState.entities: []
             };
-            let expected = GameState.{
-                player: Entity.tick(player),
-                entities: []
+            let expected = {
+                GameState.player: Entity.tick(player),
+                GameState.entities: []
             };
             let result = tick(input);
 

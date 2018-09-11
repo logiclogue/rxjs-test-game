@@ -3,9 +3,7 @@ type game_state = {
     entities: Entity.entity list;
 }
 
-let tick game_state =
-    let { player } = game_state in
-    {
-        game_state with
-        player = Entity.tick game_state.player;
-    }
+let tick game_state = {
+    game_state with
+    player = Entity.tick game_state.player;
+}
