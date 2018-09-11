@@ -31,6 +31,9 @@ external create_of : array('a) => observable('a) = "of";
 [@bs.val] [@bs.splice]
 external combine_latest : array(observable('a)) => observable('a) = "combineLatest";
 
+[@bs.module "rxjs"] [@bs.splice]
+external merge : array(observable('a)) => observable('a) = "";
+
 [@bs.val] [@bs.module "rxjs"]
 external from_event : ('a, string) => observable('b) = "fromEvent";
 
