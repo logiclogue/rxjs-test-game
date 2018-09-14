@@ -2,6 +2,9 @@ type 'a subscriber
 type 'a observable
 type scheduler
 
+type ('a, 'b) operator_function = 'a observable -> 'b observable
+type 'a mono_type_operator_function = 'a observable -> 'a observable
+
 external create_subscriber
     : 'a subscriber
     = "Subscriber"
@@ -23,9 +26,9 @@ external create_observable
     [@@bs.new] [@@bs.module "rxjs"]
 
 external subscribe
-    : ('a -> unit) -> 'a observable
+    : ('a -> unit) -> unit
     = ""
-    [@@bs.send.pipe: unit]
+    [@@bs.send.pipe: 'a observable]
 
 external animation_frame
     : scheduler
@@ -58,46 +61,46 @@ external from_event
     [@@bs.val] [@@bs.module "rxjs"]
 
 external map
-    : ('a -> 'b) -> 'a observable -> 'b observable
+    : ('a -> 'b) -> ('a, 'b) operator_function
     = "map"
     [@@bs.module "rxjs/operators"]
 
 external map_to
-    : 'b -> 'a observable -> 'b observable
+    : 'b -> ('a, 'b) operator_function
     = "mapTo"
     [@@bs.module "rxjs/operators"]
 
 external merge_map
-    : ('a -> 'b observable) -> 'a observable -> 'b observable
+    : ('a -> 'b observable) -> ('a, 'b) operator_function
     = "mergeMap"
     [@@bs.module "rxjs/operators"]
 
 external scan
-    : ('b -> 'a -> int -> 'b) -> 'b -> 'a observable -> 'b observable
+    : ('b -> 'a -> int -> 'b) -> 'b -> ('a, 'b) operator_function
     = ""
     [@@bs.module "rxjs/operators"]
 
 external filter
-    : ('a -> bool) -> 'a observable -> 'a observable
+    : ('a -> bool) -> 'a mono_type_operator_function
     = ""
     [@@bs.module "rxjs/operators"]
 
 external sample
-    : 'a observable -> 'b observable -> 'b observable
+    : 'a observable -> 'b mono_type_operator_function
     = ""
     [@@bs.module "rxjs/operators"]
 
 external share
-    : unit -> 'a observable -> 'a observable
+    : unit -> 'a mono_type_operator_function
     = ""
     [@@bs.module "rxjs/operators"]
 
 external tap
-    : ('a -> 'b) -> 'a observable -> 'a observable
+    : ('a -> 'b) -> 'a mono_type_operator_function
     = ""
     [@@bs.module "rxjs/operators"]
 
 external with_latest_from
-    : 'b observable -> 'a observable -> ('a * 'b) observable
+    : 'b observable -> ('a, ('a * 'b)) operator_function
     = "withLatestFrom"
     [@@bs.module "rxjs/operators"]

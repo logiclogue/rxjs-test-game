@@ -38,7 +38,7 @@ let game_state_stream = RxJS.merge [|player_modifier_stream|]
 
 let draw = RxJS.with_latest_from game_state_stream loop_stream
     |> RxJS.map snd
-    |. RxJS.subscribe render_game_state
+    |> RxJS.subscribe render_game_state
 
 let () = Keydown.key_code_stream
-    |. RxJS.subscribe Js.log
+    |> RxJS.subscribe Js.log
