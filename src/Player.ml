@@ -28,3 +28,11 @@ let go_west player = Entity.{
     velocity  = 1.0;
     direction = (3.0 *. Js_math._PI) /. 4.0;
 }
+
+let keycode_to_modifier keycode =
+    match keycode with
+    | 37 -> go_west
+    | 38 -> go_north
+    | 39 -> go_east
+    | 40 -> go_south
+    | _  -> (fun player -> player)
