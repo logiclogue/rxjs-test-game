@@ -8,25 +8,25 @@ let create position = Entity.{
 let go_north player = Entity.{
     player with
     velocity  = 1.0;
-    direction = 0.0;
+    direction = Js.Math._PI +. (Js.Math._PI /. 2.0);
 }
 
 let go_east player = Entity.{
     player with
     velocity  = 1.0;
-    direction = Js_math._PI /. 4.0;
+    direction = 0.0;
 }
 
 let go_south player = Entity.{
     player with
     velocity  = 1.0;
-    direction = Js_math._PI /. 2.0;
+    direction = Js.Math._PI /. 2.0;
 }
 
 let go_west player = Entity.{
     player with
     velocity  = 1.0;
-    direction = (3.0 *. Js_math._PI) /. 4.0;
+    direction = Js.Math._PI;
 }
 
 let keycode_to_modifier keycode =

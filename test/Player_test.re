@@ -12,7 +12,7 @@ describe("Player", () => {
         });
 
         it("sets the direction to 0", () => {
-            expect(result.direction)->toEqual(0.0);
+            expect(result.direction)->toEqual(Js.Math._PI +. (Js.Math._PI /. 2.0));
         });
     });
 
@@ -23,8 +23,8 @@ describe("Player", () => {
             expect(result.velocity)->toEqual(1.0);
         });
 
-        it("sets the direction to pi / 4", () => {
-            expect(result.direction)->toEqual(Js_math._PI /. 4.0);
+        it("sets the direction to 2 * pi / 4", () => {
+            expect(result.direction)->toEqual(0.0);
         });
     });
 
@@ -36,7 +36,7 @@ describe("Player", () => {
         });
 
         it("sets the direction to pi / 2", () => {
-            expect(result.direction)->toEqual(Js_math._PI /. 2.0);
+            expect(result.direction)->toEqual(Js.Math._PI /. 2.0);
         });
     });
 
@@ -48,7 +48,7 @@ describe("Player", () => {
         });
 
         it("sets the direction to 3 * pi / 4", () => {
-            expect(result.direction)->toEqual((3.0 *. Js_math._PI) /. 4.0);
+            expect(result.direction)->toEqual(Js.Math._PI);
         });
     });
 });
