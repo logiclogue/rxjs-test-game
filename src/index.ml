@@ -2,8 +2,8 @@ let loop_stream = RxJS.interval 0 RxJS.animation_frame
     |> RxJS.share ()
 
 let player_modifier_stream = Keydown.key_code_stream
-    |> RxJS.map (fun key_code -> key_code
-        |> Player.keycode_to_modifier |> GameState.update_player)
+    |> RxJS.map (fun key_code -> Player.keycode_to_modifier key_code
+        |> GameState.update_player)
 
 let tick_modifier_stream = RxJS.set_interval 100
     |> RxJS.map_to GameState.tick
