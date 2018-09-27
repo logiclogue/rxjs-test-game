@@ -16,11 +16,12 @@ let game_state_stream = RxJS.merge [|
 |]
     |> RxJS.scan reduce GameState.default
 
-let game_loop_stream = RxJS.with_latest_from game_state_stream loop_stream
+let create_loop_stream state = loop_stream
+    |> RxJS.with_latest_from state
     |> RxJS.map snd
     |> RxJS.share ()
 
-let draw = game_loop_stream |> RxJS.subscribe Renderer.render_game_state
+let () = game_loop_stream |> RxJS.subscribe Renderer.render_game_state
 
 let () = Keydown.key_code_stream
     |> RxJS.subscribe Js.log
