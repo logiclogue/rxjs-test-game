@@ -16,10 +16,12 @@ let game_state_stream = RxJS.merge [|
 |]
     |> RxJS.scan reduce GameState.default
 
-let create_loop_stream state = loop_stream
-    |> RxJS.with_latest_from state
+let create_loop_stream state_stream = loop_stream
+    |> RxJS.with_latest_from state_stream
     |> RxJS.map snd
     |> RxJS.share ()
+
+let game_loop_stream = create_loop_stream game_state_stream
 
 let () = game_loop_stream |> RxJS.subscribe Renderer.render_game_state
 
