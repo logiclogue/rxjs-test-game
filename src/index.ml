@@ -1,6 +1,3 @@
-let loop_stream = RxJS.interval 0 RxJS.animation_frame
-    |> RxJS.share ()
-
 let player_modifier_stream = Keydown.key_code_stream
     |> RxJS.map (fun key_code -> Player.keycode_to_modifier key_code
         |> GameState.update_player)
@@ -16,7 +13,7 @@ let game_state_stream = RxJS.merge [|
 |]
     |> RxJS.scan reduce GameState.default
 
-let create_loop_stream state_stream = loop_stream
+let create_loop_stream state_stream = LoopStream.loop_stream
     |> RxJS.with_latest_from state_stream
     |> RxJS.map snd
     |> RxJS.share ()
