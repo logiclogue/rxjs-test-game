@@ -1,4 +1,4 @@
-let player_modifier_stream = Keydown.key_code_stream
+let player_modifier_stream = Keydown.keydown_code_stream
     |> RxJS.map (fun key_code -> Player.keycode_to_modifier key_code
         |> GameState.update_player)
 
@@ -17,5 +17,5 @@ let game_loop_stream = LoopStream.create game_state_stream
 
 let () = game_loop_stream |> RxJS.subscribe Renderer.render_game_state
 
-let () = Keydown.key_code_stream
+let () = Keydown.keydown_code_stream
     |> RxJS.subscribe Js.log
