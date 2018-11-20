@@ -27,7 +27,8 @@ describe("Keymap", () => {
     describe(".lookup()", () => {
         context("given [(42, true)] and look up 42", () => {
             it("returns true", () => {
-                let result = Keymap.lookup(42);
+                let keymap = Keymap.empty |> Keymap.insert(42, true);
+                let result = Keymap.lookup(42, keymap);
 
                 expect(result)->t->equal(true);
             });
