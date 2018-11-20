@@ -33,5 +33,13 @@ describe("Keymap", () => {
                 expect(result)->t->equal(true);
             });
         });
+
+        context("given empty keymap", () => {
+            it("returns false", () => {
+                let result = Keymap.lookup(42, Keymap.empty);
+
+                expect(result)->t->equal(false);
+            });
+        });
     });
 });
