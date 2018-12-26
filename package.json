@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "bs-platform": "^4.0.5",
+    "pixi.js": "^4.8.4",
     "ramda": "^0.25.0",
     "rxjs": "^6.2.2",
     "scrixel-map": "^0.1.0",
