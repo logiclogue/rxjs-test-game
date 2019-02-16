@@ -1,3 +1,5 @@
+type t = Entity.entity
+
 let create position = Entity.{
     position     = position;
     prevPosition = position;

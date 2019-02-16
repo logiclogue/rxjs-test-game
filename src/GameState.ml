@@ -1,4 +1,4 @@
-type game_state = {
+type t = {
     player:   Entity.entity;
     entities: Entity.entity list;
 }
