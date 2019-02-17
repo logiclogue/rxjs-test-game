@@ -1,10 +1,15 @@
-type position = (float * float)
+type t = {
+    position:      Position.t;
+    prev_position: Position.t;
+    velocity:      float;
+    direction:     float;
+}
 
-type entity = {
-    position:     position;
-    prevPosition: position;
-    velocity:     float;
-    direction:    float;
+let default = {
+    position      = (0.0, 0.0);
+    prev_position = (0.0, 0.0);
+    velocity      = 0.0;
+    direction     = 0.0;
 }
 
 let tick { position = (x, y); velocity; direction } =
@@ -12,8 +17,14 @@ let tick { position = (x, y); velocity; direction } =
     let newY = y +. (Js_math.sin direction *. velocity) in
 
     {
-        position     = (newX, newY);
-        prevPosition = (x, y);
-        velocity     = velocity;
-        direction    = direction;
+        position      = (newX, newY);
+        prev_position = (x, y);
+        velocity      = velocity;
+        direction     = direction;
+    }
+
+let set_position position self =
+    {
+        self with
+        position;
     }
