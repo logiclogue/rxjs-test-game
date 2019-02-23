@@ -1,8 +1,8 @@
 type t
+type action
 
 val default      : t
-val tick         : t -> t
+val dispatch     : action -> t -> t
 
-val set_position : Position.t -> t -> t
-
-val reduce       : action -> t -> t
+val tick         : action
+val set_position : Position.t -> action

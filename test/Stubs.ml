@@ -1,9 +1,5 @@
-let still_entity = Entity.{
-    position     = (42.0, 0.0);
-    prevPosition = (0.0, 0.0);
-    velocity     = 0.0;
-    direction    = 0.0;
-}
+let still_entity = default
+    |> dispatch Entity.set_position (42.0, 0.0)
 
 let forward_entity = Entity.{
     position     = (42.0, 0.0);

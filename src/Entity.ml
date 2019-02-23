@@ -5,6 +5,10 @@ type t = {
     direction:     float;
 }
 
+type action = t -> t
+
+let dispatch f self = f self
+
 let default = {
     position      = (0.0, 0.0);
     prev_position = (0.0, 0.0);
