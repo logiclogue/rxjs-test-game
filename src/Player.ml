@@ -1,4 +1,4 @@
-type t = Entity.entity
+type t = Entity.t
 
 let create position = Entity.{
     position     = position;
