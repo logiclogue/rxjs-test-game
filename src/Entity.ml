@@ -28,7 +28,10 @@ let tick { position = (x, y); velocity; direction } =
     }
 
 let set_position position self =
-    {
-        self with
-        position;
-    }
+    { self with position }
+
+let set_velocity velocity self =
+    { self with velocity }
+
+let set_direction direction self =
+    { self with direction }
